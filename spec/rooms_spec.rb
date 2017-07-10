@@ -17,12 +17,17 @@ class TestRooms < Minitest::Test
     @new_room = Room.new
   end
 
-  def test_check_in_check_out()
-    hotel = @hotel.check_in(@guest_1.guest_name)
-    assert_equal("John", hotel[0])
-    hotel1 = @hotel.check_out(@guest_1)
-    assert_equal(nil, hotel1)
+  def test_check_in
+     @new_room.check_in(@guest_1)
+    assert_equal(true, @new_room.guests.include?(@guest_1))
+    
+    @new_room.check_in(@guest_2)
+    assert_equal(true, @new_room.guests.include?(@guest_2))
+  end
 
+  def test_add_music
+  song = @new_room.add_song(@song1)
+   assert_equal(true, @new_room.songs.include?(@song1))
   end
 
 end
